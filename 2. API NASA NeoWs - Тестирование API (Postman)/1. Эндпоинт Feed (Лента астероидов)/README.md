@@ -35,7 +35,7 @@
 <details>
 <summary>📸 Нажмите, чтобы посмотреть скриншот фиксации аномалии из Postman</summary>
 
-![NASA API Reverse Dates Order](https://githubusercontent.com)
+![NASA API Reverse Dates Order](../Images/Feed_reverse_dates.png)
 
 </details>
 
