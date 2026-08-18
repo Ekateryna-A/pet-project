@@ -33,7 +33,7 @@
 <details>
 <summary>📸 Нажмите, чтобы посмотреть скриншот фиксации аномалии с кириллицей (Статус 200 OK)</summary>
 
-![NASA API Кириллица Аномалия](../Images/kyrillic_id_anomaly.png)
+![NASA API Кириллица Аномалия](../Images/Lookup_invalid_id.png)
 
 </details>
 
