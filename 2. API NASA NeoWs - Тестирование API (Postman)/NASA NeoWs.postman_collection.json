@@ -1,0 +1,512 @@
+{
+  "info": {
+    "_postman_id": "6cebdebe-9b07-464a-8ff1-c17187df5d16",
+    "name": "NASA NeoWs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49726614",
+    "_collection_link": "https://go.postman.co/collection/49726614-6cebdebe-9b07-464a-8ff1-c17187df5d16?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Feed",
+      "item": [
+        {
+          "name": "Valid request (Baseline)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.nasa.gov/neo/rest/v1/feed?start_date=2026-07-17&end_date=2026-07-24&api_key={{api_key}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "nasa",
+                "gov"
+              ],
+              "path": [
+                "neo",
+                "rest",
+                "v1",
+                "feed"
+              ],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "2026-07-17"
+                },
+                {
+                  "key": "end_date",
+                  "value": "2026-07-24"
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "Цель проверки:\n\nПроверка базовой работоспособности Feed API и валидация структуры ответа.\n\nПараметры запроса:\n\n- start_date: 2026-07-17\n    \n- end_date: 2026-07-24\n    \n- api_key: valid API key\n    \n\nПроверяемые аспекты:\n\n- успешное выполнение запроса;\n    \n- наличие обязательных корневых полей JSON;\n    \n- корректную группировку по датам;\n    \n- соответствие значения element_count количеству объектов в ответе."
+          },
+          "response": []
+        },
+        {
+          "name": "Default dates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.nasa.gov/neo/rest/v1/feed?api_key={{api_key}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "nasa",
+                "gov"
+              ],
+              "path": [
+                "neo",
+                "rest",
+                "v1",
+                "feed"
+              ],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "2026-07-17",
+                  "disabled": true
+                },
+                {
+                  "key": "end_date",
+                  "value": "2026-07-24",
+                  "disabled": true
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Empty result",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.nasa.gov/neo/rest/v1/feed?start_date=1890-07-17&end_date=1890-07-24&api_key={{api_key}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "nasa",
+                "gov"
+              ],
+              "path": [
+                "neo",
+                "rest",
+                "v1",
+                "feed"
+              ],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "1890-07-17"
+                },
+                {
+                  "key": "end_date",
+                  "value": "1890-07-24"
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Date range exceeds limit",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.nasa.gov/neo/rest/v1/feed?start_date=2026-07-17&end_date=2026-07-25&api_key={{api_key}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "nasa",
+                "gov"
+              ],
+              "path": [
+                "neo",
+                "rest",
+                "v1",
+                "feed"
+              ],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "2026-07-17"
+                },
+                {
+                  "key": "end_date",
+                  "value": "2026-07-25"
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reverse date order (ATTENTION)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.nasa.gov/neo/rest/v1/feed?start_date=2026-07-25&end_date=2026-07-18&api_key={{api_key}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "nasa",
+                "gov"
+              ],
+              "path": [
+                "neo",
+                "rest",
+                "v1",
+                "feed"
+              ],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "2026-07-25"
+                },
+                {
+                  "key": "end_date",
+                  "value": "2026-07-18"
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "API принимает запрос и автоматически сортирует даты по возрастанию.  \nТребуется уточнение, является ли данное поведение ожидаемым."
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid date format",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.nasa.gov/neo/rest/v1/feed?start_date=18-07-2026&end_date=25-07-2026&api_key={{api_key}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "nasa",
+                "gov"
+              ],
+              "path": [
+                "neo",
+                "rest",
+                "v1",
+                "feed"
+              ],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "18-07-2026"
+                },
+                {
+                  "key": "end_date",
+                  "value": "25-07-2026"
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "API принимает запрос и автоматически сортирует даты по возрастанию.  \nТребуется уточнение, является ли данное поведение ожидаемым."
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid API Key",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.nasa.gov/neo/rest/v1/feed?start_date=2026-07-17&end_date=2026-07-24&api_key=sdgsdg",
+              "protocol": "https",
+              "host": [
+                "api",
+                "nasa",
+                "gov"
+              ],
+              "path": [
+                "neo",
+                "rest",
+                "v1",
+                "feed"
+              ],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "2026-07-17"
+                },
+                {
+                  "key": "end_date",
+                  "value": "2026-07-24"
+                },
+                {
+                  "key": "api_key",
+                  "value": "sdgsdg"
+                }
+              ]
+            },
+            "description": "API принимает запрос и автоматически сортирует даты по возрастанию.  \nТребуется уточнение, является ли данное поведение ожидаемым."
+          },
+          "response": []
+        },
+        {
+          "name": "Missing API Key",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.nasa.gov/neo/rest/v1/feed?start_date=2026-07-17&end_date=2026-07-24",
+              "protocol": "https",
+              "host": [
+                "api",
+                "nasa",
+                "gov"
+              ],
+              "path": [
+                "neo",
+                "rest",
+                "v1",
+                "feed"
+              ],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "2026-07-17"
+                },
+                {
+                  "key": "end_date",
+                  "value": "2026-07-24"
+                },
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "API принимает запрос и автоматически сортирует даты по возрастанию.  \nТребуется уточнение, является ли данное поведение ожидаемым."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Lookup",
+      "item": [
+        {
+          "name": "Asteroid Details (Valid ID)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.nasa.gov/neo/rest/v1/neo/3623521?api_key={{api_key}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "nasa",
+                "gov"
+              ],
+              "path": [
+                "neo",
+                "rest",
+                "v1",
+                "neo",
+                "3623521"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "Проверки:\n\n- Smoke-тест;\n    \n- Проверка структуры JSON;\n    \n- Проверка типов данный;\n    \n- Проверка булевых значений;\n    \n- Проверка массива close_approach_data"
+          },
+          "response": []
+        },
+        {
+          "name": "Non-Existing ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.nasa.gov/neo/rest/v1/neo/362352199999999999999999999999999999999999?api_key={{api_key}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "nasa",
+                "gov"
+              ],
+              "path": [
+                "neo",
+                "rest",
+                "v1",
+                "neo",
+                "362352199999999999999999999999999999999999"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "Проверки:\n\n- Smoke-тест;\n    \n- Проверка структуры JSON;\n    \n- Проверка типов данный;\n    \n- Проверка булевых значений;\n    \n- Проверка массива close_approach_data"
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid ID Format",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.nasa.gov/neo/rest/v1/neo/3623521sifugh?api_key={{api_key}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "nasa",
+                "gov"
+              ],
+              "path": [
+                "neo",
+                "rest",
+                "v1",
+                "neo",
+                "3623521sifugh"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "Проверки:\n\n- Smoke-тест;\n    \n- Проверка структуры JSON;\n    \n- Проверка типов данный;\n    \n- Проверка булевых значений;\n    \n- Проверка массива close_approach_data"
+          },
+          "response": []
+        },
+        {
+          "name": "Empty ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.nasa.gov/neo/rest/v1/neo/?api_key={{api_key}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "nasa",
+                "gov"
+              ],
+              "path": [
+                "neo",
+                "rest",
+                "v1",
+                "neo",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "Проверки:\n\n- Smoke-тест;\n    \n- Проверка структуры JSON;\n    \n- Проверка типов данный;\n    \n- Проверка булевых значений;\n    \n- Проверка массива close_approach_data"
+          },
+          "response": []
+        },
+        {
+          "name": "Special Characters in ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.nasa.gov/neo/rest/v1/neo/3623521:%_?api_key={{api_key}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "nasa",
+                "gov"
+              ],
+              "path": [
+                "neo",
+                "rest",
+                "v1",
+                "neo",
+                "3623521:%_"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "Проверки:\n\n- Smoke-тест;\n    \n- Проверка структуры JSON;\n    \n- Проверка типов данный;\n    \n- Проверка булевых значений;\n    \n- Проверка массива close_approach_data"
+          },
+          "response": []
+        },
+        {
+          "name": "Missing API Key",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.nasa.gov/neo/rest/v1/neo/3623521",
+              "protocol": "https",
+              "host": [
+                "api",
+                "nasa",
+                "gov"
+              ],
+              "path": [
+                "neo",
+                "rest",
+                "v1",
+                "neo",
+                "3623521"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Проверки:\n\n- Smoke-тест;\n    \n- Проверка структуры JSON;\n    \n- Проверка типов данный;\n    \n- Проверка булевых значений;\n    \n- Проверка массива close_approach_data"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
